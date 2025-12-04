@@ -1,0 +1,6 @@
+{
+  "name": "cloudops-simple",
+  "version": "1.0.0",
+  "description": "Simple DevOps Dashboard",
+  "main": "index.html"
+}
