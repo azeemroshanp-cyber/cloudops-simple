@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudOps | DevOps + AIOps + GreenOps</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        
+        body { background: #f5f7fa; color: #333; padding: 20px; }
+        
+        .container { max-width: 800px; margin: 0 auto; }
+        
+        header { 
+            text-align: center; 
+            padding: 30px 0; 
+            background: linear-gradient(135deg, #4f46e5, #10b981);
+            color: white;
+            border-radius: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .tags { margin: 15px 0; }
+        .tag { 
+            display: inline-block; 
+            padding: 8px 16px; 
+            margin: 5px; 
+            border-radius: 20px; 
+            font-size: 14px; 
+            font-weight: bold; 
+        }
+        
+        .devops { background: #3b82f6; }
+        .aiops { background: #8b5cf6; }
+        .greenops { background: #10b981; }
+        .cloud { background: #f59e0b; }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+        }
+        
+        h3 { margin-bottom: 15px; color: #4f46e5; }
+        
+        .metric {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 28px;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        button {
+            width: 100%;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+        }
+        
+        button:hover { transform: translateY(-3px); }
+        
+        .devops-btn { background: #3b82f6; color: white; }
+        .aiops-btn { background: #8b5cf6; color: white; }
+        .greenops-btn { background: #10b981; color: white; }
+        .cloud-btn { background: #f59e0b; color: white; }
+        
+        .cloud-icons {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+            font-size: 30px;
+        }
+        
+        .aws { color: #FF9900; }
+        .azure { color: #0078D4; }
+        .gcp { color: #4285F4; }
+        .openshift { color: #EE0000; }
+        
+        .status {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: #f0f9ff;
+            font-size: 14px;
+        }
+        
+        @media (prefers-color-scheme: dark) {
+            body { background: #0f172a; color: #cbd5e1; }
+            .card { background: #1e293b; }
+            .metric { background: #334155; }
+        }
+        
+        @media (max-width: 600px) {
+            .dashboard { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-cloud"></i> Simple CloudOps Dashboard</h1>
+            <p>DevOps + AIOps + GreenOps + Cloud Integration</p>
+            <div class="tags">
+                <span class="tag devops"><i class="fas fa-code-branch"></i> DevOps</span>
+                <span class="tag aiops"><i class="fas fa-brain"></i> AIOps</span>
+                <span class="tag greenops"><i class="fas fa-leaf"></i> GreenOps</span>
+                <span class="tag cloud"><i class="fas fa-server"></i> Multi-Cloud</span>
+            </div>
+        </header>
+        
+        <div class="dashboard">
+            <!-- DevOps Card -->
+            <div class="card">
+                <h3><i class="fas fa-rocket"></i> DevOps Metrics</h3>
+                <div class="metric">
+                    <div class="metric-value" id="deployRate">95%</div>
+                    <div>Deployment Success</div>
+                </div>
+                <div class="metric">
+                    <div class="metric-value" id="uptime">99.9%</div>
+                    <div>System Uptime</div>
+                </div>
+                <button class="devops-btn" onclick="simulateDeploy()">
+                    <i class="fas fa-play"></i> Simulate Deployment
+                </button>
+            </div>
+            
+            <!-- AIOps Card -->
+            <div class="card">
+                <h3><i class="fas fa-robot"></i> AIOps Intelligence</h3>
+                <div class="metric">
+                    <div class="metric-value" id="anomaly">12%</div>
+                    <div>Anomaly Detection</div>
+                </div>
+                <div class="status" id="aiStatus">✅ System Normal</div>
+                <button class="aiops-btn" onclick="runAIOps()">
+                    <i class="fas fa-brain"></i> Analyze System
+                </button>
+            </div>
+        </div>
+        
+        <!-- GreenOps Card -->
+        <div class="card">
+            <h3><i class="fas fa-leaf"></i> GreenOps</h3>
+            <div class="metric">
+                <div class="metric-value" id="carbon">35%</div>
+                <div>Carbon Reduction</div>
+            </div>
+            <div class="status">🌱 Energy Efficient Mode: Active</div>
+            <button class="greenops-btn" onclick="optimizeEnergy()">
+                <i class="fas fa-bolt"></i> Optimize Energy
+            </button>
+        </div>
+        
+        <!-- Cloud Card -->
+        <div class="card">
+            <h3><i class="fas fa-cloud"></i> Multi-Cloud Status</h3>
+            <div class="cloud-icons">
+                <div><i class="fab fa-aws aws"></i><br><small id="aws">✅</small></div>
+                <div><i class="fab fa-microsoft azure"></i><br><small id="azure">✅</small></div>
+                <div><i class="fab fa-google gcp"></i><br><small id="gcp">✅</small></div>
+                <div><i class="fas fa-box openshift"></i><br><small id="openshift">✅</small></div>
+            </div>
+            <button class="cloud-btn" onclick="checkClouds()">
+                <i class="fas fa-sync-alt"></i> Check All Clouds
+            </button>
+        </div>
+        
+        <div class="card">
+            <h3><i class="fas fa-history"></i> Activity Log</h3>
+            <div class="status" id="log">System started. Ready for operations.</div>
+        </div>
+        
+        <footer style="text-align:center; margin-top:30px; color:#64748b; font-size:14px;">
+            <p>Simple CloudOps Dashboard | OpenShift Ready | Single HTML File</p>
+            <p>Includes: DevOps, AIOps, GreenOps, Multi-Cloud</p>
+        </footer>
+    </div>
+
+    <script>
+        // Simple logging function
+        function log(msg) {
+            document.getElementById('log').innerHTML = `[${new Date().toLocaleTimeString()}] ${msg}`;
+        }
+        
+        // DevOps: Simulate deployment
+        function simulateDeploy() {
+            log("🚀 Starting CI/CD deployment...");
+            document.getElementById('deployRate').innerText = "98%";
+            document.getElementById('uptime').innerText = "99.95%";
+            setTimeout(() => log("✅ Deployment successful!"), 1000);
+        }
+        
+        // AIOps: Run analysis
+        function runAIOps() {
+            log("🤖 AI analyzing system patterns...");
+            const anomaly = Math.floor(Math.random() * 30);
+            document.getElementById('anomaly').innerText = anomaly + "%";
+            
+            if(anomaly > 20) {
+                document.getElementById('aiStatus').innerHTML = "⚠️ Anomaly detected! Auto-fixing...";
+                document.getElementById('aiStatus').style.background = "#fef3c7";
+                setTimeout(() => {
+                    document.getElementById('aiStatus').innerHTML = "✅ Fixed via auto-remediation";
+                    document.getElementById('aiStatus').style.background = "#f0f9ff";
+                }, 1500);
+            } else {
+                document.getElementById('aiStatus').innerHTML = "✅ System normal";
+            }
+            
+            setTimeout(() => log("🧠 AI analysis complete"), 800);
+        }
+        
+        // GreenOps: Optimize energy
+        function optimizeEnergy() {
+            log("🌿 Optimizing resources for energy savings...");
+            const newCarbon = 35 + Math.floor(Math.random() * 15);
+            document.getElementById('carbon').innerText = newCarbon + "%";
+            setTimeout(() => log("✅ Saved " + Math.floor(Math.random() * 20) + "% energy"), 1000);
+        }
+        
+        // Cloud: Check status
+        function checkClouds() {
+            log("☁️ Checking cloud providers...");
+            const status = ["✅", "⚠️", "❌"];
+            const clouds = ['aws', 'azure', 'gcp', 'openshift'];
+            
+            clouds.forEach((cloud, i) => {
+                setTimeout(() => {
+                    const randomStatus = status[Math.floor(Math.random() * 2)]; // Only ✅ or ⚠️
+                    document.getElementById(cloud).innerText = randomStatus;
+                    if(randomStatus === "⚠️") {
+                        log("⚠️ " + cloud.toUpperCase() + " needs attention");
+                    }
+                }, i * 500);
+            });
+            
+            setTimeout(() => log("✅ All clouds operational"), 2500);
+        }
+        
+        // Initialize
+        window.onload = function() {
+            log("System initialized with DevOps, AIOps, GreenOps, Cloud");
+            if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                log("🌙 Dark mode enabled for energy savings");
+            }
+        };
+    </script>
+</body>
+</html>
